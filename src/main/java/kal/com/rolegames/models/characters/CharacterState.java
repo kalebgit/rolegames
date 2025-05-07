@@ -1,8 +1,9 @@
 package kal.com.rolegames.models.characters;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.effects.Effect;
+import kal.com.rolegames.models.util.StateType;
 import lombok.*;
-import util.StateType;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -33,7 +34,7 @@ public class CharacterState {
     private String description;
 
     @OneToMany(mappedBy = "currentState")
-    private Set<Character> characters = new HashSet<>();
+    private Set<GameCharacter> characters = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "state_id")

@@ -1,7 +1,6 @@
 package kal.com.rolegames.models.combat;
 
 import jakarta.persistence.*;
-import kal.com.rolegames.models.CombatAction;
 import lombok.*;
 
 @Entity

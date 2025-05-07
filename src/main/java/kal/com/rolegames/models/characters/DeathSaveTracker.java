@@ -1,6 +1,7 @@
-package kal.com.rolegames.models;
+package kal.com.rolegames.models.characters;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.PlayerCharacter;
 import lombok.*;
 
 @Entity

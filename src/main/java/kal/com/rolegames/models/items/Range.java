@@ -1,4 +1,4 @@
-package kal.com.rolegames.models;
+package kal.com.rolegames.models.items;
 
 import jakarta.persistence.Embeddable;
 import lombok.*;

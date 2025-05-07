@@ -1,9 +1,12 @@
 package kal.com.rolegames.models.sessions;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.GameCharacter;
+import kal.com.rolegames.models.combat.CombatState;
+import kal.com.rolegames.models.rewards.Reward;
+import kal.com.rolegames.models.util.DifficultyLevel;
+import kal.com.rolegames.models.util.EncounterType;
 import lombok.*;
-import util.DifficultyLevel;
-import util.EncounterType;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -47,7 +50,7 @@ public class Encounter {
             joinColumns = @JoinColumn(name = "encounter_id"),
             inverseJoinColumns = @JoinColumn(name = "character_id")
     )
-    private Set<Character> participants = new HashSet<>();
+    private Set<GameCharacter> participants = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "encounter_id")
@@ -68,14 +71,14 @@ public class Encounter {
     private Long version;
 
     // Method to add a character as a participant in this encounter
-    // Should add the Character to the participants set
-    public void addParticipant(Character character) {
+    // Should add the GameCharacter to the participants set
+    public void addParticipant(GameCharacter character) {
         // TODO: Add character to participants set
     }
 
     // Method to remove a character from the participants in this encounter
-    // Should remove the Character from the participants set
-    public void removeParticipant(Character character) {
+    // Should remove the GameCharacter from the participants set
+    public void removeParticipant(GameCharacter character) {
         // TODO: Remove character from participants set
     }
 

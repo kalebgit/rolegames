@@ -1,11 +1,11 @@
-package kal.com.rolegames.models;
+package kal.com.rolegames.models.spells;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.PlayerCharacter;
+import kal.com.rolegames.models.util.AbilityType;
+import kal.com.rolegames.models.util.SpellComponent;
+import kal.com.rolegames.models.util.SpellSchool;
 import lombok.*;
-import util.AbilityType;
-import util.DamageType;
-import util.SpellComponent;
-import util.SpellSchool;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -59,7 +59,7 @@ public class Spell {
     private String higherLevelEffects;
 
     @Enumerated(EnumType.STRING)
-    private DamageType damageType;
+    private kal.com.rolegames.util.DamageType damageType;
 
     private String damageDice;
 

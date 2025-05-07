@@ -1,6 +1,8 @@
 package kal.com.rolegames.models.combat;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.effects.Effect;
+import kal.com.rolegames.models.sessions.Encounter;
 import lombok.*;
 
 import java.time.LocalDateTime;

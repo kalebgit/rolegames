@@ -1,10 +1,16 @@
 package kal.com.rolegames.models.characters;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.items.Item;
+import kal.com.rolegames.models.sessions.Campaign;
+import kal.com.rolegames.models.sessions.Session;
+import kal.com.rolegames.models.spells.Spell;
+import kal.com.rolegames.models.spells.SpellSlot;
+import kal.com.rolegames.models.users.Player;
+import kal.com.rolegames.models.util.CharacterClassType;
+import kal.com.rolegames.models.util.EquipSlot;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import util.CharacterClassType;
-import util.EquipSlot;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,7 +24,7 @@ import java.util.Set;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @ToString(callSuper = true)
-public class PlayerCharacter extends Character {
+public class PlayerCharacter extends GameCharacter {
 
     @ManyToOne
     @JoinColumn(name = "player_id", nullable = false)
@@ -75,8 +81,6 @@ public class PlayerCharacter extends Character {
     @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<SpellSlot> spellSlots = new HashSet<>();
 
-    // Method to add an item to the character's inventory
-    // Should set the item's owner to this character and add to inventory set
     public void addItemToInventory(Item item) {
         // TODO: Set item's owner to this character
         // TODO: Add item to inventory set

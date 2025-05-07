@@ -1,8 +1,9 @@
-package kal.com.rolegames.models;
+package kal.com.rolegames.models.skills;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.GameCharacter;
+import kal.com.rolegames.models.util.AbilityType;
 import lombok.*;
-import util.AbilityType;
 
 @Entity
 @Table(name = "saving_throws")
@@ -21,7 +22,7 @@ public class SavingThrow {
 
     @ManyToOne
     @JoinColumn(name = "character_id", nullable = false)
-    private Character character;
+    private GameCharacter character;
 
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)

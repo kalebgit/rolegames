@@ -1,105 +1,56 @@
 package kal.com.rolegames.models.users;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.PlayerCharacter;
+import kal.com.rolegames.models.users.User;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import util.AbilityType;
-import util.AlignmentType;
-import util.RaceType;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "characters")
+@PrimaryKeyJoinColumn(name="player_id")
 //lombok annotations
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
 @SuperBuilder
-@ToString(includeFieldNames = true)
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public abstract class Character {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "character_id")
-    @EqualsAndHashCode.Include
-    private Long characterId;
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
+@ToString(callSuper = true)
+public class Player extends User {
 
-    @Basic(optional = false)
-    private String name;
-
-    @Enumerated(EnumType.STRING)
-    @Basic(optional = false)
-    private RaceType race;
-
-    @Basic(optional = false)
-    private Integer level;
-
-    @Basic(optional = false)
-    private Integer experiencePoints;
-
-    @ElementCollection
-    @CollectionTable(name = "character_abilities",
-            joinColumns = @JoinColumn(name = "character_id"))
-    @MapKeyEnumerated(EnumType.STRING)
-    @MapKeyColumn(name = "ability_type")
-    @Column(name = "score")
-    private Map<AbilityType, Integer> abilities = new HashMap<>();
-
-    @Basic(optional = false)
-    private Integer hitPoints;
-
-    @Basic(optional = false)
-    private Integer maxHitPoints;
-
-    @Basic(optional = false)
-    private Integer armorClass;
-
-    @Basic(optional = false)
-    private Integer proficiencyBonus;
-
-    @Basic(optional = false)
-    private Integer speed;
-
-    @Enumerated(EnumType.STRING)
-    @Basic(optional = false)
-    private AlignmentType alignment;
-
-    private String background;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "character_traits",
-            joinColumns = @JoinColumn(name = "character_id"),
-            inverseJoinColumns = @JoinColumn(name = "trait_id")
-    )
-    private Set<Trait> traits = new HashSet<>();
-
-    @ManyToOne
-    @JoinColumn(name = "current_state_id")
-    private CharacterState currentState;
-
-    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Skill> skills = new HashSet<>();
-
-    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<SavingThrow> savingThrows = new HashSet<>();
-
-    @ManyToMany(mappedBy = "participants")
-    private Set<Encounter> encounters = new HashSet<>();
-
-    @Version
+    @OneToMany(mappedBy = "player", cascade = {CascadeType.ALL}, fetch=FetchType.LAZY, orphanRemoval=true)
     @Setter(AccessLevel.NONE)
-    private Long version;
+    private Set<PlayerCharacter> characters = new HashSet<>();
 
-    // Method to calculate ability modifier based on ability score
-    // Should implement the D&D formula: (score - 10) / 2, rounded down
-    public int getAbilityModifier(AbilityType abilityType) {
-        // TODO: Retrieve ability score from abilities map
-        // TODO: Return the calculated modifier using the (score - 10) / 2 formula
+    @Basic(optional = false)
+    @Setter(AccessLevel.NONE)
+    private int experience = 0;
+
+    // Method to add a character to this player's list of characters
+    // Should set the character's player to this player and add to characters set
+    public void addCharacter(PlayerCharacter character) {
+        // TODO: Set character's player to this player
+        // TODO: Add character to characters set
+    }
+
+    // Method to remove a character from this player's list
+    // Should remove character from set and set its player to null
+    public void removeCharacter(PlayerCharacter character) {
+        // TODO: Remove character from characters set
+        // TODO: Set character's player to null
+    }
+
+    // Method to add experience to this player
+    // Should add the specified amount to the player's experience
+    public void addExperience(int amount) {
+        // TODO: Add amount to experience
+    }
+
+    // Method to get the player's level based on experience
+    // Should calculate the level based on D&D's experience progression
+    public int getLevel() {
+        // TODO: Implement level calculation based on experience
+        // A simple formula could be level = experience / 1000 + 1 (or similar)
         return 0; // Default return for compilation
     }
 }

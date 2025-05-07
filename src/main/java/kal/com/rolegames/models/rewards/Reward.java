@@ -1,8 +1,9 @@
 package kal.com.rolegames.models.rewards;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.items.Item;
+import kal.com.rolegames.models.util.RewardType;
 import lombok.*;
-import util.RewardType;
 
 @Entity
 @Table(name = "rewards")

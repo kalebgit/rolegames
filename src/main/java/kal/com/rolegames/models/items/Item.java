@@ -1,9 +1,12 @@
 package kal.com.rolegames.models.items;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.GameCharacter;
+import kal.com.rolegames.models.effects.ItemEffect;
+import kal.com.rolegames.models.users.User;
+import kal.com.rolegames.models.util.ItemRarity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import util.ItemRarity;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -43,7 +46,7 @@ public abstract class Item {
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
-    private Character owner;
+    private GameCharacter owner;
 
     @ManyToOne
     @JoinColumn(name = "creator_id")

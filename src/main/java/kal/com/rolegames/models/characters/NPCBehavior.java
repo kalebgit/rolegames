@@ -1,8 +1,8 @@
 package kal.com.rolegames.models.characters;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.util.BehaviorTrait;
 import lombok.*;
-import util.BehaviorTrait;
 
 import java.util.HashSet;
 import java.util.Set;

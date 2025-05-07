@@ -1,8 +1,8 @@
-package kal.com.rolegames.models;
+package kal.com.rolegames.models.characters;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.util.DialogueType;
 import lombok.*;
-import util.DialogueType;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,6 +1,12 @@
 package kal.com.rolegames.models.users;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import kal.com.rolegames.models.characters.NonPlayerCharacter;
+import kal.com.rolegames.models.items.Item;
+import kal.com.rolegames.models.sessions.Campaign;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

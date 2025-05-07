@@ -1,8 +1,11 @@
-package kal.com.rolegames.models;
+package kal.com.rolegames.models.combat;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.GameCharacter;
+import kal.com.rolegames.models.items.Item;
+import kal.com.rolegames.models.spells.Spell;
+import kal.com.rolegames.models.util.ActionType;
 import lombok.*;
-import util.ActionType;
 
 import java.time.LocalDateTime;
 
@@ -27,7 +30,7 @@ public class CombatAction {
 
     @ManyToOne
     @JoinColumn(name = "character_id", nullable = false)
-    private Character character;
+    private GameCharacter character;
 
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
@@ -35,7 +38,7 @@ public class CombatAction {
 
     @ManyToOne
     @JoinColumn(name = "target_id")
-    private Character target;
+    private GameCharacter target;
 
     @ManyToOne
     @JoinColumn(name = "item_id")

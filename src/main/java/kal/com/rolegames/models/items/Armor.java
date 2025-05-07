@@ -1,9 +1,9 @@
 package kal.com.rolegames.models.items;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.util.ArmorType;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import util.ArmorType;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "armor_id")

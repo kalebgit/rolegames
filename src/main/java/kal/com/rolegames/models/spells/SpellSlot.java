@@ -1,6 +1,7 @@
-package kal.com.rolegames.models;
+package kal.com.rolegames.models.spells;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.GameCharacter;
 import lombok.*;
 
 @Entity
@@ -20,7 +21,7 @@ public class SpellSlot {
 
     @ManyToOne
     @JoinColumn(name = "character_id", nullable = false)
-    private Character character;
+    private GameCharacter character;
 
     @Basic(optional = false)
     private Integer level;

@@ -27,8 +27,11 @@ public class Trait {
     @Lob
     private String description;
 
+    // notar que character es el que afecta a traits pues cuando se elimina un personaje
+    // todas las entradas que tuviesen su llave primaria son eliminadas por el parametro
+    // cascade
     @ManyToMany(mappedBy = "traits")
-    private Set<Character> characters = new HashSet<>();
+    private Set<GameCharacter> characters = new HashSet<>();
 
     @Version
     @Setter(AccessLevel.NONE)

@@ -1,6 +1,7 @@
 package kal.com.rolegames.models.combat;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.GameCharacter;
 import lombok.*;
 
 @Entity
@@ -24,7 +25,7 @@ public class Initiative {
 
     @ManyToOne
     @JoinColumn(name = "character_id", nullable = false)
-    private Character character;
+    private GameCharacter character;
 
     @Basic(optional = false)
     private Integer initiativeRoll;

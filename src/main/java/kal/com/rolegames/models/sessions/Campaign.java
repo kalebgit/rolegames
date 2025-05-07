@@ -1,6 +1,10 @@
 package kal.com.rolegames.models.sessions;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.NonPlayerCharacter;
+import kal.com.rolegames.models.characters.PlayerCharacter;
+import kal.com.rolegames.models.users.DungeonMaster;
+import kal.com.rolegames.models.users.Player;
 import lombok.*;
 
 import java.time.LocalDate;

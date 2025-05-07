@@ -1,10 +1,11 @@
 package kal.com.rolegames.models.skills;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.GameCharacter;
+import kal.com.rolegames.models.util.AbilityType;
+import kal.com.rolegames.models.util.ProficiencyLevel;
+import kal.com.rolegames.models.util.SkillType;
 import lombok.*;
-import util.AbilityType;
-import util.ProficiencyLevel;
-import util.SkillType;
 
 @Entity
 @Table(name = "skills")
@@ -23,7 +24,7 @@ public class Skill {
 
     @ManyToOne
     @JoinColumn(name = "character_id", nullable = false)
-    private Character character;
+    private GameCharacter character;
 
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)

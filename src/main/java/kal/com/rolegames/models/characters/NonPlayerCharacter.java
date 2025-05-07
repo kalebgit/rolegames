@@ -1,9 +1,12 @@
 package kal.com.rolegames.models.characters;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.items.Item;
+import kal.com.rolegames.models.sessions.Campaign;
+import kal.com.rolegames.models.users.User;
+import kal.com.rolegames.models.util.NPCType;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import util.NPCType;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +18,7 @@ import java.util.Set;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @ToString(callSuper = true)
-public class NonPlayerCharacter extends Character {
+public class NonPlayerCharacter extends GameCharacter {
 
     @ManyToOne
     @JoinColumn(name = "creator_id")

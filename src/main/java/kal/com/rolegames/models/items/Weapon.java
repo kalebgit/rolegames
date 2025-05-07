@@ -1,11 +1,10 @@
 package kal.com.rolegames.models.items;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.util.WeaponProperty;
+import kal.com.rolegames.models.util.WeaponType;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import util.DamageType;
-import util.WeaponProperty;
-import util.WeaponType;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +24,7 @@ public class Weapon extends Item {
 
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
-    private DamageType damageType;
+    private kal.com.rolegames.util.DamageType damageType;
 
     @Basic(optional = false)
     private String damageDice;

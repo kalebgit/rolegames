@@ -1,9 +1,9 @@
 package kal.com.rolegames.models.effects;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.util.AbilityType;
+import kal.com.rolegames.models.util.EffectType;
 import lombok.*;
-import util.AbilityType;
-import util.EffectType;
 
 @Entity
 @Table(name = "item_effects")

@@ -1,8 +1,10 @@
 package kal.com.rolegames.models.effects;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.GameCharacter;
+import kal.com.rolegames.models.spells.Spell;
+import kal.com.rolegames.models.util.EffectType;
 import lombok.*;
-import util.EffectType;
 
 import java.time.LocalDateTime;
 
@@ -33,11 +35,11 @@ public class Effect {
 
     @ManyToOne
     @JoinColumn(name = "source_id")
-    private Character source;
+    private GameCharacter source;
 
     @ManyToOne
     @JoinColumn(name = "target_id")
-    private Character target;
+    private GameCharacter target;
 
     @ManyToOne
     @JoinColumn(name = "spell_id")
