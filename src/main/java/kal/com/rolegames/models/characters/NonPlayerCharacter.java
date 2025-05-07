@@ -30,9 +30,9 @@ public class NonPlayerCharacter extends GameCharacter {
 
     private Float challengeRating;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "npc_id")
-    private Set<DialogueOption> dialogue = new HashSet<>();
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "npc_id")
+//    private Set<DialogueOption> dialogue = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "behavior_id")

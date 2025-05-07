@@ -43,25 +43,6 @@ public class DeathSaveTracker {
         }
     }
 
-    // Method to record a successful death saving throw
-    // Should increment successes and check if character is now stable (3 successes)
-    public void addSuccess() {
-        successes++;
-        // TODO: If successes reach 3 or more, the character is now stable
-        if(successes>=3 && character != null){
-            character.setCurrentState();
-
-        }
-        // TODO: If character is not null, update their state to stable
-    }
-
-    // Method to record a failed death saving throw
-    // Should increment failures and check if character is now dead (3 failures)
-    public void addFailure() {
-        // TODO: Increment failures
-        // TODO: If failures reach 3 or more, the character is now dead
-        // TODO: If character is not null, update their state to dead
-    }
 
     public void reset() {
         successes = 0;

@@ -13,5 +13,6 @@ public enum StateType {
     DEAFENED,
     STUNNED,
     INCAPACITATED,
-    INSPIRED
+    INSPIRED,
+    DEAD
 }

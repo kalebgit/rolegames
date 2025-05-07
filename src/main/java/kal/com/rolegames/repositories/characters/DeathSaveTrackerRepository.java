@@ -6,23 +6,19 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface DeathSaveTrackerRepository extends JpaRepository<Long, DeathSaveTracker> {
+import javax.swing.text.html.Option;
+import java.util.Optional;
 
+public interface DeathSaveTrackerRepository extends JpaRepository<DeathSaveTracker, Long> {
 
-    @Modifying(clearAutomatically = true)
-    @Query("UPDATE DeathSaveTracker d SET d.successes = d.successes + 1 WHERE d.deathSaveId = :id")
-    void incrementSuccesses(@Param("id") Long id);
-
-    @Modifying(clearAutomatically = true)
-    @Query("UPDATE DeathSaveTracker d SET d.failures = d.failures + 1 WHERE d.deathSaveId = :id")
-    void incrementFailures(@Param("id") Long id);
 
     @Query("SELECT d.successes FROM DeathSaveTracker d WHERE d.deathSaveId = :id")
-    Integer findSuccessesValueById(@Param("id") Long id);
+    Optional<Integer> findSuccessesValueById(@Param("id") Long id);
 
     @Query("SELECT d.failures FROM DeathSaveTracker d WHERE d.deathSaveId = :id")
-    Integer findFailuresValueById(@Param("id") Long id);
+    Optional<Integer> findFailuresValueById(@Param("id") Long id);
 
     @Query("SELECT d.character FROM DeathSaveTracker d WHERE d.deathSaveId = :id")
-    Long findCharacterValueById(@Param("id") Long id);
+    Optional<Long> findCharacterValueById(@Param("id") Long id);
 }
+

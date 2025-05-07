@@ -83,7 +83,9 @@ public class PlayerCharacter extends GameCharacter {
 
     public void addItemToInventory(Item item) {
         // TODO: Set item's owner to this character
+        item.setOwner(this);
         // TODO: Add item to inventory set
+        inventory.add(item);
     }
 
     // Method to remove an item from the character's inventory
@@ -91,6 +93,9 @@ public class PlayerCharacter extends GameCharacter {
     public void removeItemFromInventory(Item item) {
         // TODO: Check if inventory contains the item
         // TODO: If it does, set item's owner to null and remove from inventory
+        if(inventory.contains(item)){
+            inventory.remove(item);
+        }
     }
 
     // Method to equip an item in a specific slot
@@ -100,11 +105,22 @@ public class PlayerCharacter extends GameCharacter {
         // TODO: Check if there's already an item in that slot and unequip it
         // TODO: Check if item is in inventory, if not add it
         // TODO: Add item to equipped items map with the slot as key
+        // desequipar el item de ese slot
+        if(equippedItems.get(slot) != null){
+           equippedItems.remove(slot);
+        }
+
+        // equipar item
+        if(!inventory.contains(item)) {
+            addItemToInventory(item);
+        }
+        equippedItems.put(slot, item);
     }
 
     // Method to unequip an item from a specific slot
     // Should simply remove the item from the equipped items map
     public void unequipItem(EquipSlot slot) {
-        // TODO: Remove the item mapped to the given slot from equippedItems
+        equippedItems.remove(slot);
     }
+
 }
