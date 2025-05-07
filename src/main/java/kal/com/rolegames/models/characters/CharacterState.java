@@ -44,36 +44,26 @@ public class CharacterState {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to add an effect to this state
-    // Should add the Effect to the effects set
     public void addEffect(Effect effect) {
-        // TODO: Add effect to effects set
+        effects.add(effect);
     }
 
-    // Method to remove an effect from this state
-    // Should remove the Effect from the effects set
     public void removeEffect(Effect effect) {
-        // TODO: Remove effect from effects set
+        effects.remove(effect);
     }
 
-    // Method to check if this state disables a character
-    // Should return true if the state type is one that prevents actions
     public boolean isDisabled() {
-        // TODO: Return true if stateType is UNCONSCIOUS, PARALYZED, PETRIFIED, or INCAPACITATED
-        return false; // Default return for compilation
+        return stateType == StateType.UNCONSCIOUS ||
+                stateType == StateType.PARALYZED ||
+                stateType == StateType.PETRIFIED ||
+                stateType == StateType.INCAPACITATED;
     }
 
-    // Method to check if a character in this state can take actions
-    // Should return true if the character is not disabled
     public boolean canTakeActions() {
-        // TODO: Return the opposite of isDisabled()
-        return false; // Default return for compilation
+        return !isDisabled(); // Default return for compilation
     }
 
-    // Method to check if this is a negative state
-    // Should return true if the state type is anything other than NORMAL or INSPIRED
     public boolean isNegativeState() {
-        // TODO: Return true if stateType is not NORMAL and not INSPIRED
-        return false; // Default return for compilation
+        return stateType != StateType.NORMAL && stateType != StateType.INSPIRED; // Default return for compilation
     }
 }
