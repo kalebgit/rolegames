@@ -60,23 +60,30 @@ public class CombatAction {
         this.timestamp = LocalDateTime.now();
     }
 
-    // Method to set the result of this action
-    // Should create a new ActionResult with the provided parameters and set it as this action's result
     public void setResult(boolean success, int damageDealt, String description) {
-        // TODO: Create a new ActionResult
-        // TODO: Set its success, damageDealt, and description properties
-        // TODO: Set this action's result to the new ActionResult
+        result = ActionResult.builder().success(success).damageDealt(damageDealt).description(description).build();
     }
 
-    // Method to generate a descriptive string for this action
-    // Should build a string describing the action, who performed it, what was used, and the result
     public String getActionDescription() {
-        // TODO: Build a StringBuilder with character name and action type
-        // TODO: Add target information if there is a target
-        // TODO: Add item information if there is an item
-        // TODO: Add spell information if there is a spell
-        // TODO: Add result information if there is a result
-        // TODO: Return the complete string
-        return null; // Default return for compilation
+        StringBuilder sb = new StringBuilder();
+        sb.append(character.getName()).append(" uses ").append(actionType.toString().toLowerCase());
+
+        if (target != null) {
+            sb.append(" targeting ").append(target.getName());
+        }
+
+        if (item != null) {
+            sb.append(" with ").append(item.getName());
+        }
+
+        if (spell != null) {
+            sb.append(" casting ").append(spell.getName());
+        }
+
+        if (result != null) {
+            sb.append(": ").append(result.getDescription());
+        }
+
+        return sb.toString();
     }
 }

@@ -45,43 +45,27 @@ public class NPCBehavior {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to add a trait to this NPC's behavior
-    // Should add the BehaviorTrait to the traits set
     public void addTrait(BehaviorTrait trait) {
-        // TODO: Add trait to traits set
+        traits.add(trait);
     }
 
-    // Method to remove a trait from this NPC's behavior
-    // Should remove the BehaviorTrait from the traits set
     public void removeTrait(BehaviorTrait trait) {
-        // TODO: Remove trait from traits set
+        traits.remove(trait);
     }
 
-    // Method to check if this NPC has a specific trait
-    // Should return true if the trait is in the traits set
     public boolean hasTrait(BehaviorTrait trait) {
-        // TODO: Return true if traits contains the specified trait
-        return false; // Default return for compilation
+        return traits.contains(trait);
     }
 
-    // Method to check if the NPC is likely to attack
-    // Should return true if aggressiveness is high (above 7)
     public boolean isLikelyToAttack() {
-        // TODO: Return true if aggressiveness is not null and greater than 7
-        return false; // Default return for compilation
+        return aggressiveness != null && aggressiveness > 7;
     }
 
-    // Method to check if the NPC is likely to help others
-    // Should return true if friendliness is high (above 7)
     public boolean isLikelyToHelp() {
-        // TODO: Return true if friendliness is not null and greater than 7
-        return false; // Default return for compilation
+        return friendliness != null && friendliness > 7;
     }
 
-    // Method to check if the NPC is likely to lie
-    // Should return true if honesty is low (below 3)
     public boolean isLikelyToLie() {
-        // TODO: Return true if honesty is not null and less than 3
-        return false; // Default return for compilation
+        return honesty != null && honesty < 3;
     }
 }

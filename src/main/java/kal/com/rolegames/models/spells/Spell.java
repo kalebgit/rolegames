@@ -81,51 +81,48 @@ public class Spell {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to check if this spell is a cantrip
-    // Should return true if level is 0
     public boolean isCantrip() {
-        // TODO: Return true if level is 0
-        return false; // Default return for compilation
+        return level == 0;
     }
 
-    // Method to check if this spell requires concentration
-    // Should return the value of the concentration field
     public boolean requiresConcentration() {
-        // TODO: Return concentration
-        return false; // Default return for compilation
+        return concentration;
     }
 
-    // Method to check if this spell can be cast as a ritual
-    // Should return the value of the ritual field
     public boolean canCastAsRitual() {
-        // TODO: Return ritual
-        return false; // Default return for compilation
+        return ritual;
     }
 
-    // Method to check if this spell requires a saving throw
-    // Should return true if savingThrow is not null
     public boolean requiresSavingThrow() {
-        // TODO: Return true if savingThrow is not null
-        return false; // Default return for compilation
+        return savingThrow != null;
     }
 
-    // Method to check if this spell deals damage
-    // Should return true if both damageType and damageDice are not null
-    public boolean dealsDamage() {
-        // TODO: Return true if both damageType and damageDice are not null
-        return false; // Default return for compilation
-    }
-
-    // Method to get a formatted full description of the spell
-    // Should build a string with all the spell's details in a readable format
     public String getFullDescription() {
-        // TODO: Build a StringBuilder with the spell's details
-        // TODO: Include name, level, school
-        // TODO: Include casting time, range, components
-        // TODO: Include duration (with concentration if applicable)
-        // TODO: Include description
-        // TODO: Include higher level effects if any
-        // TODO: Return the complete string
-        return null; // Default return for compilation
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(name).append(" (Level ").append(level).append(" ").append(school).append(")");
+        sb.append("\nCasting Time: ").append(castingTime);
+        sb.append("\nRange: ").append(range);
+        sb.append("\nComponents: ");
+
+        for (SpellComponent component : components) {
+            sb.append(component.name().charAt(0));
+            if (component == SpellComponent.MATERIAL && materialComponents != null) {
+                sb.append(" (").append(materialComponents).append(")");
+            }
+        }
+
+        sb.append("\nDuration: ").append(duration);
+        if (concentration) {
+            sb.append(" (Concentration)");
+        }
+
+        sb.append("\n\n").append(description);
+
+        if (higherLevelEffects != null && !higherLevelEffects.isEmpty()) {
+            sb.append("\n\nAt Higher Levels: ").append(higherLevelEffects);
+        }
+
+        return sb.toString();
     }
 }

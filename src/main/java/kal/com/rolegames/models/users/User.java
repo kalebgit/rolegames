@@ -1,12 +1,15 @@
 package kal.com.rolegames.models.users;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.notcertain.Role;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.NaturalId;
 import util.UserType;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -51,6 +54,15 @@ public class User {
     @Version
     @Setter(AccessLevel.NONE)
     private Long version;
+
+    // sistema basado en roles, esto es composite
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Role> roles = new HashSet<>();
+
+    public void addRole(Role role){
+        roles.add(role);
+    }
 
     @PrePersist
     protected void prePersist(){

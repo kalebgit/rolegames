@@ -33,15 +33,19 @@ public class Initiative {
     @Basic(optional = false)
     private Boolean currentTurn;
 
+    // soloi hay una accion por ronda
     @Basic(optional = false)
     private Boolean hasActed;
 
+    // una accion adicional por ronda
     @Basic(optional = false)
     private Integer bonusActionsUsed;
 
+    // una reaccion igual por ronda
     @Basic(optional = false)
     private Integer reactionsUsed;
 
+    // cantidad limitada de movimiento dependiendo del personaje
     @Basic(optional = false)
     private Integer movementUsed;
 

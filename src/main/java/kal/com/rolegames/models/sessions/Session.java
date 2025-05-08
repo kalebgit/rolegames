@@ -62,29 +62,21 @@ public class Session {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to add a player to the list of attending players for this session
-    // Should add the Player to the attendingPlayers set
     public void addAttendingPlayer(Player player) {
-        // TODO: Add player to attendingPlayers set
+        attendingPlayers.add(player);
     }
 
-    // Method to remove a player from the list of attending players for this session
-    // Should remove the Player from the attendingPlayers set
     public void removeAttendingPlayer(Player player) {
-        // TODO: Remove player from attendingPlayers set
+        attendingPlayers.remove(player);
     }
 
-    // Method to add an encounter to this session
-    // Should add the Encounter to the encountersCompleted set and set the encounter's session to this session
     public void addEncounter(Encounter encounter) {
-        // TODO: Add encounter to encountersCompleted set
-        // TODO: Set encounter's session to this session
+        encountersCompleted.add(encounter);
+        encounter.setSession(this);
     }
 
-    // Method to remove an encounter from this session
-    // Should remove the Encounter from the encountersCompleted set and set the encounter's session to null
     public void removeEncounter(Encounter encounter) {
-        // TODO: Remove encounter from encountersCompleted set
-        // TODO: Set encounter's session to null
+        encountersCompleted.remove(encounter);
+        encounter.setSession(null);
     }
 }

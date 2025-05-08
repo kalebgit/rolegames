@@ -40,41 +40,42 @@ public class Skill {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to get the ability type associated with this skill
-    // Should return the ability type from the SkillType enum
     public AbilityType getAssociatedAbility() {
-        // TODO: Return the associated ability from skillType
-        return null; // Default return for compilation
+        return skillType.getAssociatedAbility();
     }
 
-    // Method to calculate the total skill modifier
-    // Should consider ability modifier, proficiency bonus based on proficiency level, and any bonus modifiers
     public int getSkillModifier() {
         // TODO: Start with ability modifier from character
         // TODO: Add proficiency bonus based on proficiency level (none, proficient, expertise)
         // TODO: Add any additional modifiers
         // TODO: Return the total
-        return 0; // Default return for compilation
+        int total = 0;
+        total += character.getAbilityModifier(getAssociatedAbility());
+        switch(proficiencyLevel){
+            case PROFICIENT:
+                total +=character.getProficiencyBonus();
+                break;
+            case EXPERTISE:
+                total += character.getProficiencyBonus() * 2;
+                break;
+            default:
+                break;
+        }
+        if(bonusModifier != null){
+            total+=bonusModifier;
+        }
+        return total;
     }
 
-    // Method to calculate the passive score for this skill
-    // Should be 10 + the skill modifier
     public int getPassiveScore() {
-        // TODO: Return 10 + the skill modifier
-        return 0; // Default return for compilation
+        return 10 + getSkillModifier();
     }
 
-    // Method to check if the character has proficiency in this skill
-    // Should return true if proficiency level is not NONE
     public boolean hasProficiency() {
-        // TODO: Return true if proficiencyLevel is not NONE
-        return false; // Default return for compilation
+        return proficiencyLevel != ProficiencyLevel.NONE;
     }
 
-    // Method to check if the character has expertise in this skill
-    // Should return true if proficiency level is EXPERTISE
     public boolean hasExpertise() {
-        // TODO: Return true if proficiencyLevel is EXPERTISE
-        return false; // Default return for compilation
+        return proficiencyLevel == ProficiencyLevel.EXPERTISE;
     }
 }

@@ -31,34 +31,42 @@ public class NPCAssociation {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to check if this is a positive relationship
-    // Should return true if relationshipStrength is positive
     public boolean isPositiveRelationship() {
-        // TODO: Return true if relationshipStrength is not null and greater than 0
-        return false; // Default return for compilation
+        return relationshipStrength != null && relationshipStrength > 0;
     }
 
-    // Method to check if this is a negative relationship
-    // Should return true if relationshipStrength is negative
     public boolean isNegativeRelationship() {
-        // TODO: Return true if relationshipStrength is not null and less than 0
-        return false; // Default return for compilation
+        return relationshipStrength != null && relationshipStrength < 0;
     }
 
-    // Method to check if this is a neutral relationship
-    // Should return true if relationshipStrength is null or zero
     public boolean isNeutralRelationship() {
         // TODO: Return true if relationshipStrength is null or equal to 0
-        return false; // Default return for compilation
+        return relationshipStrength != null && relationshipStrength == 0;
     }
 
-    // Method to get a formatted description of the relationship
-    // Should build a string with the relationship details including strength description
     public String getRelationshipDescription() {
-        // TODO: Build a StringBuilder starting with "Relationship with [otherNpc.getName()]: "
-        // TODO: Add the relationship description
-        // TODO: Add strength descriptor based on relationshipStrength value if not null
-        // TODO: Return the complete string
-        return null; // Default return for compilation
-    }
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Relationship with ").append(otherNpc.getName()).append(": ");
+        sb.append(relationship);
+
+        if (relationshipStrength != null) {
+            if (relationshipStrength > 7) {
+                sb.append(" (Very Strong)");
+            } else if (relationshipStrength > 3) {
+                sb.append(" (Strong)");
+            } else if (relationshipStrength > 0) {
+                sb.append(" (Positive)");
+            } else if (relationshipStrength < -7) {
+                sb.append(" (Very Hostile)");
+            } else if (relationshipStrength < -3) {
+                sb.append(" (Hostile)");
+            } else if (relationshipStrength < 0) {
+                sb.append(" (Negative)");
+            } else {
+                sb.append(" (Neutral)");
+            }
+        }
+
+        return sb.toString();    }
 }

@@ -65,27 +65,19 @@ public abstract class Item {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to add an effect to this item
-    // Should add the ItemEffect to the effects set
     public void addEffect(ItemEffect effect) {
-        // TODO: Add effect to the effects set
+        effects.add(effect);
     }
 
-    // Method to remove an effect from this item
-    // Should remove the ItemEffect from the effects set
     public void removeEffect(ItemEffect effect) {
-        // TODO: Remove effect from the effects set
+        effects.remove(effect);
     }
 
-    // Method to add a tag to this item
-    // Should add the tag string to the tags set
     public void addTag(String tag) {
-        // TODO: Add tag to the tags set
+        tags.add(tag);
     }
 
-    // Method to remove a tag from this item
-    // Should remove the tag string from the tags set
     public void removeTag(String tag) {
-        // TODO: Remove tag from the tags set
+        tags.remove(tag);
     }
 }

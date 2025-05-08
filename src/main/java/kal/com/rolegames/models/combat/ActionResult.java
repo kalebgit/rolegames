@@ -33,7 +33,4 @@ public class ActionResult {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // No specific methods needed for this class as it primarily holds data
-    // You might want to implement methods for different types of results
-    // such as damage results, healing results, status effect results, etc.
 }

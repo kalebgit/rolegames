@@ -1,6 +1,8 @@
 package kal.com.rolegames.models.items;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.GameCharacter;
+import kal.com.rolegames.models.util.AbilityType;
 import kal.com.rolegames.models.util.ArmorType;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -27,22 +29,37 @@ public class Armor extends Item {
 
     private Integer magicalBonus;
 
-    // Method to calculate the total AC provided by this armor for a specific character
-    // Should consider armor type, base AC, DEX modifier based on armor type, and magical bonus
-    public Integer calculateArmorClass(Character wearer) {
-        // TODO: Start with base AC
-        // TODO: Add DEX modifier based on armor type (full for light, max +2 for medium, none for heavy)
-        // TODO: Add magical bonus if present
-        // TODO: Return the total AC
-        return 0; // Default return for compilation
+    public Integer calculateArmorClass(GameCharacter wearer) {
+        int ac = baseArmorClass;
+
+        switch (armorType) {
+            case LIGHT:
+                ac += wearer.getAbilityModifier(AbilityType.DEXTERITY);
+                break;
+            case MEDIUM:
+                ac += Math.min(2, wearer.getAbilityModifier(AbilityType.DEXTERITY));
+                break;
+            case HEAVY:
+                break;
+            case SHIELD:
+                break;
+        }
+
+        // Add magical bonus if any
+        if (magicalBonus != null) {
+            ac += magicalBonus;
+        }
+
+        return ac;
     }
 
-    // Method to check if a character meets the requirements to wear this armor
-    // Should check if character's strength meets the strength requirement (if any)
-    public boolean canBeWornBy(Character character) {
-        // TODO: Check if there is a strength requirement
-        // TODO: If so, check if the character's strength meets the requirement
-        // TODO: Return the result
-        return false; // Default return for compilation
-    }
-}
+    public boolean canBeWornBy(GameCharacter character) {
+        if (strengthRequirement != null && strengthRequirement > 0) {
+            Integer strScore = character.getAbilities().get(AbilityType.STRENGTH);
+            if (strScore == null || strScore < strengthRequirement) {
+                return false;
+            }
+        }
+
+        return true;
+    }}

@@ -73,41 +73,29 @@ public class Campaign {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to add a player to this campaign
-    // Should add the Player to the players set
     public void addPlayer(Player player) {
-        // TODO: Add player to players set
+        players.add(player);
     }
 
-    // Method to remove a player from this campaign
-    // Should remove the Player from the players set
     public void removePlayer(Player player) {
-        // TODO: Remove player from players set
+        players.remove(player);
     }
 
-    // Method to add a session to this campaign
-    // Should add the Session to the sessions set and set the session's campaign to this campaign
     public void addSession(Session session) {
-        // TODO: Add session to sessions set
-        // TODO: Set session's campaign to this campaign
+        sessions.add(session);
+        session.setCampaign(this);
     }
 
-    // Method to remove a session from this campaign
-    // Should remove the Session from the sessions set and set the session's campaign to null
     public void removeSession(Session session) {
-        // TODO: Remove session from sessions set
-        // TODO: Set session's campaign to null
+        sessions.remove(session);
+        session.setCampaign(null);
     }
 
-    // Method to add an NPC to the list of important NPCs for this campaign
-    // Should add the NonPlayerCharacter to the importantNPCs set
     public void addImportantNPC(NonPlayerCharacter npc) {
-        // TODO: Add npc to importantNPCs set
+        importantNPCs.add(npc);
     }
 
-    // Method to remove an NPC from the list of important NPCs for this campaign
-    // Should remove the NonPlayerCharacter from the importantNPCs set
     public void removeImportantNPC(NonPlayerCharacter npc) {
-        // TODO: Remove npc from importantNPCs set
+        importantNPCs.remove(npc);
     }
 }

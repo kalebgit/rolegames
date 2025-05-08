@@ -1,8 +1,7 @@
-package kal.com.rolegames.models.users;
+package kal.com.rolegames.models.notcertain;
 
 import jakarta.persistence.*;
 import kal.com.rolegames.models.characters.PlayerCharacter;
-import kal.com.rolegames.models.users.User;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -10,15 +9,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@PrimaryKeyJoinColumn(name="player_id")
-//lombok annotations
-@SuperBuilder
+//lombok
 @Getter @Setter
-@AllArgsConstructor @NoArgsConstructor
-@ToString(callSuper = true)
-public class Player extends User {
-
-    @OneToMany(mappedBy = "player", cascade = {CascadeType.ALL}, fetch=FetchType.LAZY, orphanRemoval=true)
+@NoArgsConstructor @AllArgsConstructor
+@SuperBuilder
+@ToString(includeFieldNames = true)
+public class PlayerRole extends Role{
+    @OneToMany(mappedBy = "player", cascade = {CascadeType.ALL}, fetch= FetchType.LAZY, orphanRemoval=true)
     @Setter(AccessLevel.NONE)
     private Set<PlayerCharacter> characters = new HashSet<>();
 

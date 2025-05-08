@@ -37,7 +37,4 @@ public class Trait {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // No specific methods needed for this class as it primarily holds data
-    // You might want to implement methods for comparing traits,
-    // filtering traits by category, or grouping related traits
 }

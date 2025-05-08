@@ -45,34 +45,46 @@ public class ItemEffect {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to check if this effect is currently active
-    // Should return true if there is no charge limit or if charges are available
     public boolean isActive() {
-        // TODO: Return true if chargesPerDay is null or currentCharges < chargesPerDay
-        return false; // Default return for compilation
+        return chargesPerDay == null || currentCharges < chargesPerDay;
     }
 
-    // Method to mark a charge as used
-    // Should increment currentCharges if the effect is active and has charges
     public void useCharge() {
-        // TODO: Check if chargesPerDay is not null and currentCharges < chargesPerDay
-        // TODO: If so, increment currentCharges
+        if (chargesPerDay != null && currentCharges < chargesPerDay) {
+            currentCharges++;
+        }
     }
 
-    // Method to reset the charges used
-    // Should set currentCharges back to 0
     public void resetCharges() {
-        // TODO: Set currentCharges to 0
+        currentCharges = 0;
     }
 
-    // Method to get a formatted description of the effect
-    // Should build a string with the effect details including any ability bonuses and charges
     public String getEffectDescription() {
-        // TODO: Start with effect name
-        // TODO: If bonusValue is not null, add details about the affected ability and bonus
-        // TODO: If damageDice is not null, add details about the damage bonus
-        // TODO: If chargesPerDay is not null, add details about remaining charges
-        // TODO: Return the complete string
-        return null; // Default return for compilation
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(name);
+
+        if (bonusValue != null) {
+            sb.append(": ");
+            if (affectedAbility != null) {
+                sb.append(affectedAbility.toString()).append(" ");
+            }
+
+            if (bonusValue > 0) {
+                sb.append("+");
+            }
+            sb.append(bonusValue);
+        }
+
+        if (damageDice != null) {
+            sb.append(": Additional ").append(damageDice).append(" damage");
+        }
+
+        if (chargesPerDay != null) {
+            sb.append(" (").append(chargesPerDay - (currentCharges != null ? currentCharges : 0));
+            sb.append("/").append(chargesPerDay).append(" charges remaining)");
+        }
+
+        return sb.toString();
     }
 }

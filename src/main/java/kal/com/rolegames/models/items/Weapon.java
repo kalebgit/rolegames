@@ -1,6 +1,8 @@
 package kal.com.rolegames.models.items;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.GameCharacter;
+import kal.com.rolegames.models.util.AbilityType;
 import kal.com.rolegames.models.util.WeaponProperty;
 import kal.com.rolegames.models.util.WeaponType;
 import lombok.*;
@@ -45,48 +47,74 @@ public class Weapon extends Item {
 
     private Integer attackBonus;
 
-    // Method to add a property to this weapon
-    // Should add the WeaponProperty to the properties set
     public void addProperty(WeaponProperty property) {
-        // TODO: Add property to the properties set
+        properties.add(property);
     }
 
-    // Method to remove a property from this weapon
-    // Should remove the WeaponProperty from the properties set
     public void removeProperty(WeaponProperty property) {
-        // TODO: Remove property from the properties set
+        properties.remove(property);
     }
 
     // Method to calculate the total attack bonus for a character using this weapon
     // Should consider weapon's attack bonus, ability modifiers based on weapon type, and proficiency if applicable
-    public Integer getTotalAttackBonus(Character wielder, Boolean isProficient) {
+    public Integer getTotalAttackBonus(GameCharacter wielder, Boolean isProficient) {
         // TODO: Calculate base total from attackBonus (if not null)
         // TODO: Add ability modifier (STR or DEX based on weapon type and properties)
         // TODO: Add proficiency bonus if character is proficient
         // TODO: Return the total bonus
-        return 0; // Default return for compilation
+        int total = 0;
+
+        if(attackBonus != null){
+            total +=attackBonus;
+        }
+
+        // ver cualidades del personaje
+        if (hasProperty(WeaponProperty.FINESSE)) {
+            // usa lo que tenga mejor de modficador de fuerza o destreza
+            int strMod = wielder.getAbilityModifier(AbilityType.STRENGTH);
+            int dexMod = wielder.getAbilityModifier(AbilityType.DEXTERITY);
+            total += Math.max(strMod, dexMod);
+        } else if (isRanged()) {
+            total += wielder.getAbilityModifier(AbilityType.DEXTERITY);
+        } else {
+            total += wielder.getAbilityModifier(AbilityType.STRENGTH);
+        }
+
+        if (isProficient) {
+            total += wielder.getProficiencyBonus();
+        }
+
+        return total;
     }
 
-    // Method to calculate the total damage formula for this weapon when used by a character
-    // Should return a string in the format "XdY+Z" where X is number of dice, Y is die type, and Z is bonus
-    public String getTotalDamage(Character wielder) {
+    // Regresa un string en formato "XdY+Z" done X es el numero de dados Y es el tipo de dado (num caras), y Z el bonus
+    public String getTotalDamage(GameCharacter wielder) {
         // TODO: Determine the appropriate ability modifier to use (STR or DEX)
         // TODO: Calculate the total bonus from damageBonus and ability modifier
         // TODO: Return the damage formula as a string (e.g., "1d8+3")
-        return null; // Default return for compilation
+
+        // modificador de habilidad para agregarselo al danio
+        int abilityMod = 0;
+        if (hasProperty(WeaponProperty.FINESSE)) {
+            int strMod = wielder.getAbilityModifier(AbilityType.STRENGTH);
+            int dexMod = wielder.getAbilityModifier(AbilityType.DEXTERITY);
+            abilityMod = Math.max(strMod, dexMod);
+        } else if (isRanged()) {
+            abilityMod = wielder.getAbilityModifier(AbilityType.DEXTERITY);
+        } else {
+            abilityMod = wielder.getAbilityModifier(AbilityType.STRENGTH);
+        }
+
+        int totalBonus = (damageBonus != null ? damageBonus : 0) + abilityMod;
+
+        return damageDice + (totalBonus >= 0 ? "+" + totalBonus : totalBonus);
     }
 
-    // Helper method to check if this weapon has a specific property
-    // Should return true if the property is in the properties set, false otherwise
     private boolean hasProperty(WeaponProperty property) {
-        // TODO: Check if properties contains the specified property
-        return false; // Default return for compilation
+        return properties.contains(property);
     }
 
-    // Helper method to determine if this is a ranged weapon
-    // Should return true if the weapon has a range greater than 5 feet
     private boolean isRanged() {
-        // TODO: Check if range is not null and normal range is greater than 5
-        return false; // Default return for compilation
+        return range != null && range.getNormal() > 5;
     }
 }

@@ -1,15 +1,14 @@
 package kal.com.rolegames.models.combat;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.GameCharacter;
 import kal.com.rolegames.models.effects.Effect;
 import kal.com.rolegames.models.sessions.Encounter;
 import lombok.*;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "combat_states")
@@ -57,57 +56,69 @@ public class CombatState {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to add a participant to combat with their initiative roll
-    // Should create a new Initiative object, initialize its values, and add it to the initiative order
-    public void addParticipant(Character character, int initiativeRoll) {
-        // TODO: Create a new Initiative object
-        // TODO: Set its combatState to this
-        // TODO: Set its character to the parameter
-        // TODO: Set its initiativeRoll to the parameter
-        // TODO: Set currentTurn, hasActed, and other action counters to initial values
-        // TODO: Add to initiativeOrder
-        // TODO: Sort initiativeOrder by initiativeRoll descending
+    public void addParticipant(GameCharacter character, int initiativeRoll) {
+        initiativeOrder.add(Initiative.builder().combatState(this).character(character).initiativeRoll(initiativeRoll)
+                .currentTurn(false).hasActed(false).bonusActionsUsed(0).reactionsUsed(0).reactionsUsed(0)
+                .movementUsed(0).build());
+        initiativeOrder.sort((a, b)-> b.getInitiativeRoll() - a.getInitiativeRoll());
     }
 
-    // Method to start combat
-    // Should set isActive to true, record start time, set round to 1, and set the first character's turn
     public void startCombat() {
-        // TODO: Set isActive to true
-        // TODO: Set startTime to current time
-        // TODO: Set currentRound to 1
-        // TODO: If initiativeOrder is not empty, set the first character's currentTurn to true
+        isActive = true;
+        startTime = LocalDateTime.now();
+        currentRound = 1;
+        if(!initiativeOrder.isEmpty()){
+            initiativeOrder.get(0).setCurrentTurn(true);
+        }
     }
 
-    // Method to end combat
-    // Should set isActive to false, record end time, and clear all current turns
     public void endCombat() {
-        // TODO: Set isActive to false
-        // TODO: Set endTime to current time
-        // TODO: Iterate through initiativeOrder and set all currentTurn flags to false
+        isActive = false;
+        endTime = LocalDateTime.now();
+        for(Initiative ini : initiativeOrder){
+            ini.setCurrentTurn(false);
+        }
     }
 
-    // Method to proceed to the next turn in initiative order
-    // Should end current turn, move to next character, and potentially start a new round
     public void nextTurn() {
-        // TODO: Find the index of the current turn character
-        // TODO: End that character's turn (set currentTurn to false, hasActed to true)
-        // TODO: Calculate the next index (with wrap-around)
-        // TODO: If next index is 0, start a new round (increment currentRound, reset all action counters)
-        // TODO: Start the next character's turn (set currentTurn to true)
+        // el indice actual
+        int index = -1;
+        for(int i=0; i < initiativeOrder.size();i++){
+            if(initiativeOrder.get(i).getCurrentTurn()){
+                index = i;
+                break;
+            }
+        }
+        if(index >=0){
+            Initiative current = initiativeOrder.get(index);
+            current.setCurrentTurn(false);
+            current.setHasActed(true);
+
+        }
+
+        //al final es como un arreglo circular
+        int nextIndex = (index + 1) % initiativeOrder.size();
+        //cuando volvemos a empezar una nueva ronda
+        if(nextIndex == 0){
+            currentRound++;
+            for(Initiative initiative : initiativeOrder){
+                initiative.setHasActed(false);
+                initiative.setBonusActionsUsed(0);
+                initiative.setReactionsUsed(0);
+                initiative.setMovementUsed(0);
+            }
+        }
+
+        Initiative next = initiativeOrder.get(nextIndex);
+        next.setCurrentTurn(true);
     }
 
-    // Method to get the participant whose turn it currently is
-    // Should return the Initiative object that has currentTurn set to true
     public Initiative getCurrentTurnParticipant() {
-        // TODO: Iterate through initiativeOrder to find the entry with currentTurn = true
-        // TODO: Return that Initiative object, or null if none found
-        return null; // Default return for compilation
+        return initiativeOrder.stream().filter(initiative -> initiative.getCurrentTurn()).findFirst().orElseThrow(NoSuchElementException::new); // Default return for compilation
     }
 
-    // Method to add an action to the combat history
-    // Should add the action to the history and set the action's combat to this
     public void addAction(CombatAction action) {
-        // TODO: Add action to actionHistory
-        // TODO: Set action's combat to this CombatState
+        actionHistory.add(action);
+        action.setCombat(this);
     }
 }

@@ -41,27 +41,27 @@ public class SavingThrow {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to calculate the total saving throw modifier
-    // Should consider ability modifier, proficiency bonus if proficient, and any bonus modifiers
     public int getSavingThrowModifier() {
-        // TODO: Start with ability modifier from character
-        // TODO: Add proficiency bonus if isProficient is true
-        // TODO: Add bonusModifier if not null
-        // TODO: Return the total
-        return 0; // Default return for compilation
+        int total = 0;
+
+        total += character.getAbilityModifier(abilityType);
+
+        if (isProficient) {
+            total += character.getProficiencyBonus();
+        }
+
+        if (bonusModifier != null) {
+            total += bonusModifier;
+        }
+
+        return total;
     }
 
-    // Method to check if this saving throw has advantage
-    // Should return true if advantage is not null and true
     public boolean hasAdvantage() {
-        // TODO: Return true if advantage is not null and true
-        return false; // Default return for compilation
+        return advantage != null && advantage;
     }
 
-    // Method to check if this saving throw has disadvantage
-    // Should return true if disadvantage is not null and true
     public boolean hasDisadvantage() {
-        // TODO: Return true if disadvantage is not null and true
-        return false; // Default return for compilation
+        return disadvantage != null && disadvantage;
     }
 }

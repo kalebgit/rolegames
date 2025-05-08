@@ -70,42 +70,34 @@ public class Encounter {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to add a character as a participant in this encounter
-    // Should add the GameCharacter to the participants set
     public void addParticipant(GameCharacter character) {
-        // TODO: Add character to participants set
+        participants.add(character);
     }
 
-    // Method to remove a character from the participants in this encounter
-    // Should remove the GameCharacter from the participants set
     public void removeParticipant(GameCharacter character) {
-        // TODO: Remove character from participants set
+        participants.remove(character);
     }
 
-    // Method to add a reward to this encounter
-    // Should add the Reward to the rewards set
     public void addReward(Reward reward) {
-        // TODO: Add reward to rewards set
+        rewards.add(reward);
     }
 
-    // Method to remove a reward from this encounter
-    // Should remove the Reward from the rewards set
     public void removeReward(Reward reward) {
-        // TODO: Remove reward from rewards set
+        rewards.remove(reward);
     }
 
-    // Method to initiate combat for this encounter
-    // Should create a new CombatState if this is a combat encounter and no combat state exists yet
     public void startCombat() {
-        // TODO: Check if this is a combat encounter and combatState is null
-        // TODO: If so, create a new CombatState, set its encounter to this, initialize round to 1, and set active to true
-        // TODO: Set this encounter's combatState to the new CombatState
+        if(encounterType.equals(EncounterType.COMBAT) && combatState == null){
+            CombatState newCombat = CombatState.builder().encounter(this).currentRound(1).isActive(true).build();
+            setCombatState(newCombat);
+        }
     }
 
-    // Method to end combat for this encounter
-    // Should set the combat state's isActive to false if a combat state exists
     public void endCombat() {
         // TODO: Check if combatState is not null
         // TODO: If so, set its isActive to false
+        if (combatState != null) {
+            combatState.setIsActive(false);
+        }
     }
 }

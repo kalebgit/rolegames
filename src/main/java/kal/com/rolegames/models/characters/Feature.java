@@ -46,35 +46,30 @@ public class Feature {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to check if the feature is available for use
-    // Should return true if there are no uses per day limit or if current uses is less than the limit
     public boolean isAvailable() {
-        // TODO: Return true if usesPerDay is null or currentUses < usesPerDay
-        return false; // Default return for compilation
+        return usesPerDay == null || currentUses < usesPerDay; // Default return for compilation
     }
 
-    // Method to mark that the feature has been used
-    // Should increment currentUses if the feature is available and has a usage limit
     public void useFeature() {
-        // TODO: Check if usesPerDay is not null and currentUses < usesPerDay
-        // TODO: If so, increment currentUses
+        if(usesPerDay != null && currentUses < usesPerDay){
+            currentUses++;
+        }
     }
 
-    // Method to reset the feature's uses
-    // Should set currentUses back to 0
     public void resetUses() {
-        // TODO: Set currentUses to 0
+        currentUses = 0;
     }
 
-    // Method to get a formatted full description of the feature
-    // Should build a string with all the feature's details in a readable format
     public String getFullDescription() {
-        // TODO: Build a StringBuilder with the feature's details
-        // TODO: Include name and feature type
-        // TODO: Include level required
-        // TODO: Include uses per day if applicable
-        // TODO: Include description
-        // TODO: Return the complete string
-        return null; // Default return for compilation
-    }
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(" (").append(featureType).append(")");
+        sb.append("\nLevel Required: ").append(levelRequired);
+
+        if (usesPerDay != null) {
+            sb.append("\nUses Per Day: ").append(usesPerDay);
+        }
+
+        sb.append("\n\n").append(description);
+
+        return sb.toString();    }
 }

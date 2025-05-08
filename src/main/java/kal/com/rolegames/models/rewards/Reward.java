@@ -42,40 +42,54 @@ public class Reward {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to check if this is an experience reward
-    // Should return true if rewardType is EXPERIENCE
     public boolean isExperienceReward() {
-        // TODO: Return true if rewardType is EXPERIENCE
-        return false; // Default return for compilation
+        return rewardType == RewardType.EXPERIENCE;
     }
 
-    // Method to check if this is a gold reward
-    // Should return true if rewardType is GOLD
     public boolean isGoldReward() {
-        // TODO: Return true if rewardType is GOLD
-        return false; // Default return for compilation
+        return rewardType == RewardType.GOLD;
     }
 
-    // Method to check if this is an item reward
-    // Should return true if rewardType is ITEM
     public boolean isItemReward() {
-        // TODO: Return true if rewardType is ITEM
-        return false; // Default return for compilation
+        return rewardType == RewardType.ITEM;
     }
 
-    // Method to mark this reward as claimed
-    // Should set claimed to true
     public void claim() {
-        // TODO: Set claimed to true
+        this.claimed = true;
     }
 
-    // Method to get a formatted description of the reward
-    // Should build a string with the reward details including type, amount, and claimed status
     public String getRewardDescription() {
-        // TODO: Start with reward name followed by colon
-        // TODO: Add details based on reward type (experience, gold, or item)
-        // TODO: Add claimed status
-        // TODO: Return the complete string
-        return null; // Default return for compilation
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(name).append(": ");
+
+        switch (rewardType) {
+            case EXPERIENCE:
+                sb.append(experienceAmount).append(" XP");
+                break;
+            case GOLD:
+                sb.append(goldAmount).append(" gold");
+                break;
+            case ITEM:
+                if (itemReward != null) {
+                    sb.append(itemReward.getName());
+                    if (itemReward.getRarity() != null) {
+                        sb.append(" (").append(itemReward.getRarity()).append(")");
+                    }
+                } else {
+                    sb.append("Unknown item");
+                }
+                break;
+            default:
+                sb.append("Special reward");
+        }
+
+        if (claimed) {
+            sb.append(" [Claimed]");
+        } else {
+            sb.append(" [Unclaimed]");
+        }
+
+        return sb.toString();
     }
 }

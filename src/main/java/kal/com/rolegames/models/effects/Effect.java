@@ -61,47 +61,35 @@ public class Effect {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to activate this effect
-    // Should set isActive to true and record the start time
     public void activate() {
-        // TODO: Set isActive to true
-        // TODO: Set startTime to current time
+        this.isActive = true;
+        this.startTime = LocalDateTime.now();
     }
 
-    // Method to deactivate this effect
-    // Should set isActive to false and record the end time
     public void deactivate() {
-        // TODO: Set isActive to false
-        // TODO: Set endTime to current time
+        this.isActive = false;
+        this.endTime = LocalDateTime.now();
     }
 
-    // Method to check if this effect is permanent
-    // Should return true if duration is negative
     public boolean isPermanent() {
-        // TODO: Return true if duration is less than 0
-        return false; // Default return for compilation
+        return duration < 0;
     }
 
-    // Method to check if this effect is temporary
-    // Should return true if the effect is not permanent
     public boolean isTemporary() {
-        // TODO: Return the opposite of isPermanent()
-        return false; // Default return for compilation
+        return !isPermanent();
     }
 
-    // Method to check if this effect comes from a spell
-    // Should return true if the spell field is not null
     public boolean isFromSpell() {
-        // TODO: Return true if spell is not null
-        return false; // Default return for compilation
+        return spell != null;
     }
 
-    // Method to get the name of the source of this effect
-    // Should return the spell name if from a spell, character name if from a character, or "Unknown"
     public String getSourceName() {
-        // TODO: If isFromSpell() is true, return spell.getName()
-        // TODO: Else if source is not null, return source.getName()
-        // TODO: Else return "Unknown"
-        return null; // Default return for compilation
+        if (isFromSpell()) {
+            return spell.getName();
+        } else if (source != null) {
+            return source.getName();
+        } else {
+            return "Unknown";
+        }
     }
 }
