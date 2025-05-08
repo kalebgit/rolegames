@@ -1,7 +1,6 @@
 package kal.com.rolegames.models.users;
 
 import jakarta.persistence.*;
-import kal.com.rolegames.models.notcertain.Role;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.NaturalId;
@@ -56,13 +55,14 @@ public class User {
     private Long version;
 
     // sistema basado en roles, esto es composite
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Role> roles = new HashSet<>();
-
-    public void addRole(Role role){
-        roles.add(role);
-    }
+    // TODO todavia no estamos seguros de agregar esta parte de roles
+//
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    private Set<Role> roles = new HashSet<>();
+//
+//    public void addRole(Role role){
+//        roles.add(role);
+//    }
 
     @PrePersist
     protected void prePersist(){

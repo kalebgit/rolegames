@@ -1,11 +1,13 @@
 package kal.com.rolegames.models.sessions;
 
 import jakarta.persistence.*;
+import kal.com.rolegames.models.characters.PlayerCharacter;
 import kal.com.rolegames.models.users.Player;
 import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -44,6 +46,14 @@ public class Session {
     )
     private Set<Player> attendingPlayers = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(
+            name= "session_characters",
+            joinColumns = @JoinColumn(name = "session_id"),
+            inverseJoinColumns = @JoinColumn(name = "character_id")
+    )
+    private Set<PlayerCharacter> attendingCharacters = new HashSet<>();
+
     @Lob
     private String summary;
 
@@ -68,6 +78,28 @@ public class Session {
 
     public void removeAttendingPlayer(Player player) {
         attendingPlayers.remove(player);
+    }
+
+    //
+    public void addAttendingCharacter(PlayerCharacter character) {
+        attendingCharacters.add(character);
+    }
+
+    public void removeAttendingCharacter(PlayerCharacter character) {
+        attendingCharacters.remove(character);
+    }
+
+    public void swapAttendingCharacter(PlayerCharacter newCharacter){
+        Optional<PlayerCharacter> oldCharacter = attendingCharacters.stream().filter(character -> character.getPlayer().equals(newCharacter.getPlayer())).findFirst();
+        oldCharacter.ifPresentOrElse(
+                character->{
+                    attendingCharacters.remove(oldCharacter);
+                    attendingCharacters.add(newCharacter);
+                },
+                ()->{
+                    addAttendingCharacter(newCharacter);
+                }
+        );
     }
 
     public void addEncounter(Encounter encounter) {

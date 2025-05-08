@@ -75,7 +75,7 @@ public class PlayerCharacter extends GameCharacter {
     @JoinColumn(name = "death_save_id")
     private DeathSaveTracker deathSaves;
 
-    @ManyToMany(mappedBy = "attendingPlayers")
+    @ManyToMany(mappedBy = "attendingCharacters")
     private Set<Session> sessions = new HashSet<>();
 
     @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = true)
