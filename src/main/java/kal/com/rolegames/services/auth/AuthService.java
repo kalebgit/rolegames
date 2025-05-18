@@ -3,13 +3,13 @@ package kal.com.rolegames.services.auth;
 import kal.com.rolegames.models.users.User;
 import kal.com.rolegames.repositories.users.UserRepository;
 import kal.com.rolegames.security.util.JwtTokenProvider;
-import kal.com.rolegames.security.util.PasswordEncoder;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
