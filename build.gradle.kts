@@ -28,8 +28,15 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.session:spring-session-core")
+
+	//mapstruct with lombok
+	implementation( "org.mapstruct:mapstruct:1.5.5.Final" )
+
+	annotationProcessor(  "org.mapstruct:mapstruct-processor:1.5.5.Final" )
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
+	annotationProcessor(  "org.projectlombok:lombok-mapstruct-binding:0.2.0" )
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")

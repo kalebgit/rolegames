@@ -1,6 +1,7 @@
 package kal.com.rolegames.controllers;
 
 import kal.com.rolegames.dto.UserDTO;
+import kal.com.rolegames.mappers.GenericMapper;
 import kal.com.rolegames.models.users.User;
 import kal.com.rolegames.repositories.users.UserRepository;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +22,11 @@ import java.util.Map;
 @CrossOrigin(origins = "*")
 public class UserController {
 
+    private GenericMapper<User, UserDTO> mapper;
 
     @GetMapping("/me")
     public ResponseEntity<?> getCurrentUser(@AuthenticationPrincipal User user){
-        return ResponseEntity.ok(new UserDTO(user));
+        return ResponseEntity.ok(mapper.toDTO(user));
     }
 
 }
