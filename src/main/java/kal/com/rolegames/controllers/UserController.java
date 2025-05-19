@@ -1,5 +1,6 @@
 package kal.com.rolegames.controllers;
 
+import kal.com.rolegames.dto.UserDTO;
 import kal.com.rolegames.models.users.User;
 import kal.com.rolegames.repositories.users.UserRepository;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +24,7 @@ public class UserController {
 
     @GetMapping("/me")
     public ResponseEntity<?> getCurrentUser(@AuthenticationPrincipal User user){
-        String username = user.getUsername();
-        Collection<? extends GrantedAuthority> authorities  = user.getAuthorities();
-        Map<String, Object> response = new Hashtable<>();
-        response.put("username", username);
-        response.put("authorities", authorities);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new UserDTO(user));
     }
 
 }
