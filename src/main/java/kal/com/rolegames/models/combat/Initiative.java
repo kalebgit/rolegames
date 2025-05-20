@@ -53,48 +53,56 @@ public class Initiative {
     @Setter(AccessLevel.NONE)
     private Long version;
 
-    // Method to check if the character can take an action
-    // Should return true if the character has not acted yet
+    /**
+     * Verifica si el personaje puede realizar una acción.
+     * @return true si el personaje no ha actuado todavía
+     */
     public boolean canTakeAction() {
-        // TODO: Return the opposite of hasActed
-        return false; // Default return for compilation
+        return !hasActed;
     }
 
-    // Method to check if the character can take a bonus action
-    // Should return true if the character has not used all their bonus actions
+    /**
+     * Verifica si el personaje puede realizar una acción adicional.
+     * @return true si el personaje no ha utilizado todas sus acciones adicionales
+     */
     public boolean canTakeBonusAction() {
-        // TODO: Return true if bonusActionsUsed is less than 1
-        return false; // Default return for compilation
+        return bonusActionsUsed < 1;
     }
 
-    // Method to check if the character can take a reaction
-    // Should return true if the character has not used all their reactions
+    /**
+     * Verifica si el personaje puede realizar una reacción.
+     * @return true si el personaje no ha utilizado todas sus reacciones
+     */
     public boolean canTakeReaction() {
-        // TODO: Return true if reactionsUsed is less than 1
-        return false; // Default return for compilation
+        return reactionsUsed < 1;
     }
 
-    // Method to mark that the character has used their action
-    // Should set hasActed to true
+    /**
+     * Marca que el personaje ha utilizado su acción.
+     */
     public void useAction() {
-        // TODO: Set hasActed to true
+        this.hasActed = true;
     }
 
-    // Method to mark that the character has used a bonus action
-    // Should increment bonusActionsUsed
+    /**
+     * Marca que el personaje ha utilizado una acción adicional.
+     */
     public void useBonusAction() {
-        // TODO: Increment bonusActionsUsed
+        this.bonusActionsUsed++;
     }
 
-    // Method to mark that the character has used a reaction
-    // Should increment reactionsUsed
+    /**
+     * Marca que el personaje ha utilizado una reacción.
+     */
     public void useReaction() {
-        // TODO: Increment reactionsUsed
+        this.reactionsUsed++;
     }
 
-    // Method to track movement used
-    // Should add the specified distance to movementUsed
+    /**
+     * Registra el movimiento utilizado por el personaje.
+     * @param distance la distancia recorrida
+     */
     public void useMovement(int distance) {
-        // TODO: Add distance to movementUsed
+        this.movementUsed += distance;
     }
 }

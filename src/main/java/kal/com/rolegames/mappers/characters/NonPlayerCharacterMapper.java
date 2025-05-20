@@ -5,6 +5,7 @@ import kal.com.rolegames.models.characters.NonPlayerCharacter;
 import kal.com.rolegames.models.util.AbilityType;
 import org.mapstruct.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Mapper(componentModel = "spring",
@@ -16,6 +17,8 @@ public interface NonPlayerCharacterMapper {
 
     @Mapping(target = "abilities", ignore = true) // Ignoramos el mapeo automático de abilities
     NonPlayerCharacter toEntity(NonPlayerCharacterDTO dto);
+
+    List<NonPlayerCharacterDTO> toNonPlayerCharacterListDto(List<NonPlayerCharacter> npcs);
 
     @AfterMapping
     default void mapAbilities(NonPlayerCharacter source, @MappingTarget NonPlayerCharacterDTO target) {

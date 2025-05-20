@@ -26,8 +26,6 @@ public class DeathSaveTrackerService {
     private final GameCharacterRepository gameCharacterRepository;
 
 
-    // TODO: If successes reach 3 or more, the character is now stable
-    // TODO: If character is not null, update their state to stable
     @Transactional
     public void addSuccess(Long deathSaveId) {
         DeathSaveTracker deathSave = deathSaveTrackerRepository.findById(deathSaveId).orElseThrow(NoSuchElementException::new);
@@ -50,9 +48,6 @@ public class DeathSaveTrackerService {
         }
     }
 
-    // TODO: Increment failures
-    // TODO: If failures reach 3 or more, the character is now dead
-    // TODO: If character is not null, update their state to dead
     public void addFailure(Long deathSaveId) {
         DeathSaveTracker deathSave = deathSaveTrackerRepository.findById(deathSaveId).orElseThrow(NoSuchElementException::new);
         if(deathSave.getFailures() >= 3){

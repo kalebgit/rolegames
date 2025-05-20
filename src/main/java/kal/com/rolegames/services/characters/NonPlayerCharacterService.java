@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -25,23 +26,17 @@ public class NonPlayerCharacterService {
     private final NonPlayerCharacterMapper mapper;
 
     public List<NonPlayerCharacterDTO> getAllNPCs() {
-        return npcRepository.findAll().stream()
-                .map(mapper::toDTO)
-                .collect(Collectors.toList());
+        return mapper.toNonPlayerCharacterListDto(new ArrayList<>(npcRepository.findAll()));
     }
 
     public List<NonPlayerCharacterDTO> getNPCsByCreator(Long creatorId) {
         DungeonMaster dm = dmRepository.findById(creatorId)
                 .orElseThrow(() -> new NoSuchElementException("Dungeon Master not found"));
-        return npcRepository.findByCreator(dm).stream()
-                .map(mapper::toDTO)
-                .collect(Collectors.toList());
+        return mapper.toNonPlayerCharacterListDto(new ArrayList<>(npcRepository.findByCreator(dm)));
     }
 
     public List<NonPlayerCharacterDTO> getNPCsByType(NPCType type) {
-        return npcRepository.findByNpcType(type).stream()
-                .map(mapper::toDTO)
-                .collect(Collectors.toList());
+        return mapper.toNonPlayerCharacterListDto(new ArrayList<>(npcRepository.findByNpcType(type)));
     }
 
     public NonPlayerCharacterDTO getNPCById(Long id) {
