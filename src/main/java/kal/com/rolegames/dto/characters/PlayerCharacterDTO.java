@@ -1,4 +1,4 @@
-package kal.com.rolegames.dto;
+package kal.com.rolegames.dto.characters;
 
 import kal.com.rolegames.models.characters.PlayerCharacter;
 import kal.com.rolegames.models.util.AbilityType;

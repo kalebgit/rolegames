@@ -1,6 +1,5 @@
-package kal.com.rolegames.dto;
+package kal.com.rolegames.dto.characters;
 
-import kal.com.rolegames.models.characters.NonPlayerCharacter;
 import kal.com.rolegames.models.util.AbilityType;
 import kal.com.rolegames.models.util.AlignmentType;
 import kal.com.rolegames.models.util.NPCType;
