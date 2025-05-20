@@ -16,7 +16,7 @@ public interface EffectMapper {
     @Mapping(target="sourceId", source = "source.characterId")
     @Mapping(target="sourceName", source = "source.name")
     @Mapping(target="targetId", source = "target.characterId")
-    @Mapping(target="targetId", source = "target.name")
+    @Mapping(target="targetName", source = "target.name")
     @Mapping(target="spellId", source = "spell.spellId")
     @Mapping(target="spellName", source = "spell.name")
     EffectDTO toDTO(Effect spell);

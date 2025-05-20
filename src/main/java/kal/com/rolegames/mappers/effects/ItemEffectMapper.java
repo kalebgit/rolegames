@@ -17,7 +17,7 @@ public interface ItemEffectMapper {
 
     List<ItemEffectDTO> toItemEffectListDto(List<ItemEffect> initiatives);
 
-    @Mapping(target = "effectId", ignore = true)
+    @Mapping(target = "itemEffectId", ignore = true)
     void updateItemEffectFromDto(ItemEffectDTO source, @MappingTarget ItemEffect target);
 
 }

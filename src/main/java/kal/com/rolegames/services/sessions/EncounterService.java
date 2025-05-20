@@ -1,7 +1,7 @@
 package kal.com.rolegames.services.sessions;
 
 import jakarta.transaction.Transactional;
-import kal.com.rolegames.dto.RewardDTO;
+import kal.com.rolegames.dto.items.RewardDTO;
 import kal.com.rolegames.dto.sessions.EncounterDTO;
 import kal.com.rolegames.mappers.items.RewardMapper;
 import kal.com.rolegames.mappers.sessions.EncounterMapper;

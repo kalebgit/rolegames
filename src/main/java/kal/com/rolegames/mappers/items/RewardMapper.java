@@ -12,12 +12,11 @@ import java.util.List;
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface RewardMapper {
 
-    RewardDTO toDTO(Reward spell);
+    RewardDTO toDTO(Reward source);
 
     Reward toEntity(RewardDTO dto);
 
     List<RewardDTO> toRewardListDto(List<Reward> initiatives);
 
-    @Mapping(target = "effectId", ignore = true)
     void updateRewardFromDto(RewardDTO source, @MappingTarget Reward target);
 }

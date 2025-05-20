@@ -20,6 +20,5 @@ public interface InitiativeMapper {
 
     List<InitiativeDTO> toInitiativeListDto(List<Initiative> initiatives);
 
-    @Mapping(target = "effectId", ignore = true)
     void updateInitiativeFromDto(InitiativeDTO source, @MappingTarget Initiative target);
 }

@@ -13,20 +13,20 @@ import java.util.List;
         uses = {ItemMapper.class, ItemEffectMapper.class})
 public interface ArmorMapper {
 
-    @Mapping(target="ownerId", source ="ownerId.characterId")
-    @Mapping(target="ownerName", source ="ownerName.name")
+    @Mapping(target="ownerId", source ="owner.characterId")
+    @Mapping(target="ownerName", source ="owner.name")
     //user
-    @Mapping(target="creatorId", source ="creatorId.userId")
-    @Mapping(target="creatorName", source ="creatorName.username")
+    @Mapping(target="creatorId", source ="creator.userId")
+    @Mapping(target="creatorName", source ="creator.username")
     //tipo de arma
-    @Mapping(target = "itemType", defaultValue = "Armor")
+//    @Mapping(target = "itemType", defaultValue = "Armor")
     //propio de weapon
     ArmorDTO toDTO(Armor source);
 
     @Mapping(target = "itemId", ignore = true)
     @Mapping(target = "version", ignore = true)
     @Mapping(target = "creator", ignore = true)
-    @Mapping(target = "effectId", ignore = true)
+//    @Mapping(target = "itemEffectId", ignore = true)
     void updateArmorFromDto(ArmorDTO source, @MappingTarget Armor target);
 
     Armor toEntity(ArmorDTO dto);

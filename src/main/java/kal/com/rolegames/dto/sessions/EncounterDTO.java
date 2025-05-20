@@ -1,6 +1,6 @@
 package kal.com.rolegames.dto.sessions;
 
-import kal.com.rolegames.dto.RewardDTO;
+import kal.com.rolegames.dto.items.RewardDTO;
 import kal.com.rolegames.models.util.DifficultyLevel;
 import kal.com.rolegames.models.util.EncounterType;
 import lombok.Data;
