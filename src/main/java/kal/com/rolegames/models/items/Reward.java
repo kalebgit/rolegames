@@ -1,7 +1,6 @@
-package kal.com.rolegames.models.rewards;
+package kal.com.rolegames.models.items;
 
 import jakarta.persistence.*;
-import kal.com.rolegames.models.items.Item;
 import kal.com.rolegames.models.util.RewardType;
 import lombok.*;
 

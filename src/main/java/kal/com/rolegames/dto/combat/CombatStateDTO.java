@@ -1,6 +1,6 @@
 package kal.com.rolegames.dto.combat;
 
-import kal.com.rolegames.models.combat.Initiative;
+import kal.com.rolegames.dto.effects.EffectDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

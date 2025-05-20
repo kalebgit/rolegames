@@ -1,7 +1,5 @@
-package kal.com.rolegames.mappers.combat;
-import kal.com.rolegames.dto.combat.EffectDTO;
-import kal.com.rolegames.dto.combat.InitiativeDTO;
-import kal.com.rolegames.models.combat.Initiative;
+package kal.com.rolegames.mappers.effects;
+import kal.com.rolegames.dto.effects.EffectDTO;
 import kal.com.rolegames.models.effects.Effect;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

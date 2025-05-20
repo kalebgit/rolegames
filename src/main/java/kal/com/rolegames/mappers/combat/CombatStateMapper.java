@@ -1,6 +1,7 @@
 package kal.com.rolegames.mappers.combat;
 
 import kal.com.rolegames.dto.combat.CombatStateDTO;
+import kal.com.rolegames.mappers.effects.EffectMapper;
 import kal.com.rolegames.models.combat.CombatState;
 import org.mapstruct.*;
 

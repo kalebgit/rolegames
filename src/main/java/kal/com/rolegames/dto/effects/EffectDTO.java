@@ -1,4 +1,4 @@
-package kal.com.rolegames.dto.combat;
+package kal.com.rolegames.dto.effects;
 
 import kal.com.rolegames.models.util.EffectType;
 import lombok.Data;

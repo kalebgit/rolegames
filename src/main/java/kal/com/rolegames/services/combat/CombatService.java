@@ -3,11 +3,10 @@ package kal.com.rolegames.services.combat;
 import jakarta.transaction.Transactional;
 import kal.com.rolegames.dto.combat.CombatStateDTO;
 import kal.com.rolegames.mappers.combat.CombatStateMapper;
-import kal.com.rolegames.mappers.combat.EffectMapper;
+import kal.com.rolegames.mappers.effects.EffectMapper;
 import kal.com.rolegames.mappers.combat.InitiativeMapper;
 import kal.com.rolegames.models.characters.GameCharacter;
 import kal.com.rolegames.models.combat.CombatState;
-import kal.com.rolegames.models.combat.Initiative;
 import kal.com.rolegames.models.sessions.Encounter;
 import kal.com.rolegames.repositories.characters.GameCharacterRepository;
 import kal.com.rolegames.repositories.combat.CombatStateRepository;
@@ -17,9 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor(onConstructor=@__({@Autowired}))

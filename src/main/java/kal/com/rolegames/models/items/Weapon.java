@@ -5,6 +5,7 @@ import kal.com.rolegames.models.characters.GameCharacter;
 import kal.com.rolegames.models.util.AbilityType;
 import kal.com.rolegames.models.util.WeaponProperty;
 import kal.com.rolegames.models.util.WeaponType;
+import kal.com.rolegames.util.DamageType;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -26,7 +27,7 @@ public class Weapon extends Item {
 
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
-    private kal.com.rolegames.util.DamageType damageType;
+    private DamageType damageType;
 
     @Basic(optional = false)
     private String damageDice;

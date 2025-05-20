@@ -3,7 +3,7 @@ package kal.com.rolegames.models.sessions;
 import jakarta.persistence.*;
 import kal.com.rolegames.models.characters.GameCharacter;
 import kal.com.rolegames.models.combat.CombatState;
-import kal.com.rolegames.models.rewards.Reward;
+import kal.com.rolegames.models.items.Reward;
 import kal.com.rolegames.models.util.DifficultyLevel;
 import kal.com.rolegames.models.util.EncounterType;
 import lombok.*;

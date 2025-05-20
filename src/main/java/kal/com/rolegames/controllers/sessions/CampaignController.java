@@ -2,7 +2,7 @@ package kal.com.rolegames.controllers.sessions;
 
 import kal.com.rolegames.dto.sessions.CampaignDTO;
 import kal.com.rolegames.models.users.User;
-import kal.com.rolegames.services.CampaignService;
+import kal.com.rolegames.services.sessions.CampaignService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

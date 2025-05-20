@@ -1,4 +1,4 @@
-package kal.com.rolegames.services;
+package kal.com.rolegames.services.sessions;
 
 import jakarta.transaction.Transactional;
 import kal.com.rolegames.dto.sessions.CampaignDTO;
