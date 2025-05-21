@@ -1,4 +1,4 @@
-package kal.com.rolegames.util;
+package kal.com.rolegames.models.util;
 
 public enum DamageType {
     SLASHING,

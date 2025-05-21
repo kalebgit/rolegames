@@ -3,6 +3,7 @@ package kal.com.rolegames.models.spells;
 import jakarta.persistence.*;
 import kal.com.rolegames.models.characters.PlayerCharacter;
 import kal.com.rolegames.models.util.AbilityType;
+import kal.com.rolegames.models.util.DamageType;
 import kal.com.rolegames.models.util.SpellComponent;
 import kal.com.rolegames.models.util.SpellSchool;
 import lombok.*;
@@ -59,7 +60,7 @@ public class Spell {
     private String higherLevelEffects;
 
     @Enumerated(EnumType.STRING)
-    private kal.com.rolegames.util.DamageType damageType;
+    private DamageType damageType;
 
     private String damageDice;
 

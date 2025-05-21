@@ -3,9 +3,9 @@ package kal.com.rolegames.models.items;
 import jakarta.persistence.*;
 import kal.com.rolegames.models.characters.GameCharacter;
 import kal.com.rolegames.models.util.AbilityType;
+import kal.com.rolegames.models.util.DamageType;
 import kal.com.rolegames.models.util.WeaponProperty;
 import kal.com.rolegames.models.util.WeaponType;
-import kal.com.rolegames.util.DamageType;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

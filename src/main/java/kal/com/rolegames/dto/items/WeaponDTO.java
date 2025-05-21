@@ -1,8 +1,8 @@
 package kal.com.rolegames.dto.items;
 
+import kal.com.rolegames.models.util.DamageType;
 import kal.com.rolegames.models.util.WeaponProperty;
 import kal.com.rolegames.models.util.WeaponType;
-import kal.com.rolegames.util.DamageType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
